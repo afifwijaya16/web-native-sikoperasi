@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Okt 2021 pada 11.31
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 5.6.39
+-- Generation Time: Oct 20, 2021 at 09:12 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_anggota`
+-- Table structure for table `t_anggota`
 --
 
 CREATE TABLE `t_anggota` (
@@ -39,24 +39,28 @@ CREATE TABLE `t_anggota` (
   `telp` varchar(12) NOT NULL,
   `tempat_lahir` varchar(20) NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `status` varchar(10) NOT NULL,
+  `status` varchar(50) NOT NULL,
   `u_entry` varchar(50) NOT NULL,
-  `tgl_entri` date NOT NULL
+  `tgl_entri` date NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_anggota`
+-- Dumping data for table `t_anggota`
 --
 
-INSERT INTO `t_anggota` (`kode_anggota`, `kode_tabungan`, `nama_anggota`, `alamat_anggota`, `jenis_kelamin`, `pekerjaan`, `tgl_masuk`, `telp`, `tempat_lahir`, `tgl_lahir`, `status`, `u_entry`, `tgl_entri`) VALUES
-('A0003', 59, 'GILANG', 'WAY KANDIS', 'Laki-laki', 'Wiraswasta', '2021-10-12', '089909098787', 'Palembang', '2021-10-07', 'aktif', 'Gilang', '2021-10-12'),
-('A0002', 58, 'Yoga', 'Sukarame', '', 'Mahasiswa', '2021-10-08', '082282108836', 'Palembang', '2021-10-08', 'aktif', 'Gilang', '2021-10-08'),
-('A0001', 57, 'Yoga', 'Sukarame', 'Laki-laki', 'Wiraswasta', '2021-09-21', '082282108836', 'Palembang', '2021-09-21', 'aktif', 'Gilang', '2021-09-21');
+INSERT INTO `t_anggota` (`kode_anggota`, `kode_tabungan`, `nama_anggota`, `alamat_anggota`, `jenis_kelamin`, `pekerjaan`, `tgl_masuk`, `telp`, `tempat_lahir`, `tgl_lahir`, `status`, `u_entry`, `tgl_entri`, `username`, `password`) VALUES
+('A0003', 59, 'GILANG', 'WAY KANDIS', 'Laki-laki', 'Wiraswasta', '2021-10-12', '089909098787', 'Palembang', '2021-10-07', 'aktif', 'Gilang', '2021-10-12', NULL, NULL),
+('A0002', 58, 'Yoga', 'Sukarame', '', 'Mahasiswa', '2021-10-08', '082282108836', 'Palembang', '2021-10-08', 'aktif', 'Gilang', '2021-10-08', NULL, NULL),
+('A0001', 57, 'Yoga', 'Sukarame', 'Laki-laki', 'Wiraswasta', '2021-09-21', '082282108836', 'Palembang', '2021-09-21', 'aktif', 'Gilang', '2021-09-21', NULL, NULL),
+('A0004', 61, 'awi', 'Lampung', 'Laki-laki', 'Belum Bekerja', '2021-10-20', '081970118846', 'Menggala', '2021-10-20', 'keluar', 'Gilang', '2021-10-20', 'awi', '123'),
+('A0005', 62, 'adi', '', 'Laki-laki', 'Belum Bekerja', '2021-10-20', '081970118846', 'Menggala', '2021-10-20', 'aktif', 'daftar', '0000-00-00', 'adi', 'adi');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_angsur`
+-- Table structure for table `t_angsur`
 --
 
 CREATE TABLE `t_angsur` (
@@ -74,7 +78,7 @@ CREATE TABLE `t_angsur` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_jenis_pinjam`
+-- Table structure for table `t_jenis_pinjam`
 --
 
 CREATE TABLE `t_jenis_pinjam` (
@@ -88,7 +92,7 @@ CREATE TABLE `t_jenis_pinjam` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_jenis_pinjam`
+-- Dumping data for table `t_jenis_pinjam`
 --
 
 INSERT INTO `t_jenis_pinjam` (`kode_jenis_pinjam`, `nama_pinjaman`, `lama_angsuran`, `maks_pinjam`, `bunga`, `u_entry`, `tgl_entri`) VALUES
@@ -99,7 +103,7 @@ INSERT INTO `t_jenis_pinjam` (`kode_jenis_pinjam`, `nama_pinjaman`, `lama_angsur
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_jenis_simpan`
+-- Table structure for table `t_jenis_simpan`
 --
 
 CREATE TABLE `t_jenis_simpan` (
@@ -111,7 +115,7 @@ CREATE TABLE `t_jenis_simpan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_jenis_simpan`
+-- Dumping data for table `t_jenis_simpan`
 --
 
 INSERT INTO `t_jenis_simpan` (`kode_jenis_simpan`, `nama_simpanan`, `besar_simpanan`, `u_entry`, `tgl_entri`) VALUES
@@ -122,7 +126,7 @@ INSERT INTO `t_jenis_simpan` (`kode_jenis_simpan`, `nama_simpanan`, `besar_simpa
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pengajuan`
+-- Table structure for table `t_pengajuan`
 --
 
 CREATE TABLE `t_pengajuan` (
@@ -136,16 +140,17 @@ CREATE TABLE `t_pengajuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pengajuan`
+-- Dumping data for table `t_pengajuan`
 --
 
 INSERT INTO `t_pengajuan` (`kode_pengajuan`, `tgl_pengajuan`, `kode_anggota`, `kode_jenis_pinjam`, `besar_pinjam`, `tgl_acc`, `status`) VALUES
-(1, '2021-10-12', 'A0003', 'P0003', 25000000, '2021-10-12', 'diterima');
+(1, '2021-10-12', 'A0003', 'P0003', 25000000, '2021-10-12', 'diterima'),
+(2, '2021-10-20', 'A0005', 'P0003', 25000000, '2021-10-20', 'diterima');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pengambilan`
+-- Table structure for table `t_pengambilan`
 --
 
 CREATE TABLE `t_pengambilan` (
@@ -159,7 +164,7 @@ CREATE TABLE `t_pengambilan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_petugas`
+-- Table structure for table `t_petugas`
 --
 
 CREATE TABLE `t_petugas` (
@@ -173,7 +178,7 @@ CREATE TABLE `t_petugas` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_petugas`
+-- Dumping data for table `t_petugas`
 --
 
 INSERT INTO `t_petugas` (`kode_petugas`, `nama_petugas`, `alamat_petugas`, `no_telp`, `jenis_kelamin`, `u_entry`, `tgl_entri`) VALUES
@@ -182,7 +187,7 @@ INSERT INTO `t_petugas` (`kode_petugas`, `nama_petugas`, `alamat_petugas`, `no_t
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pinjam`
+-- Table structure for table `t_pinjam`
 --
 
 CREATE TABLE `t_pinjam` (
@@ -201,17 +206,18 @@ CREATE TABLE `t_pinjam` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pinjam`
+-- Dumping data for table `t_pinjam`
 --
 
 INSERT INTO `t_pinjam` (`kode_pinjam`, `kode_anggota`, `kode_jenis_pinjam`, `besar_pinjam`, `besar_angsuran`, `lama_angsuran`, `sisa_angsuran`, `sisa_pinjaman`, `u_entry`, `tgl_entri`, `tgl_tempo`, `status`) VALUES
 (71, 'A0003', 'P0003', 25000000, 3214285.7142857, 35, 0, 25000000, '', '2021-10-12', '2021-11-11', 'belum lunas'),
-(70, 'A0001', 'P0001', 25000000, 2916666.6666667, 60, 0, 25000000, '', '2021-09-21', '2021-10-21', 'belum lunas');
+(70, 'A0001', 'P0001', 25000000, 2916666.6666667, 60, 0, 25000000, '', '2021-09-21', '2021-10-21', 'belum lunas'),
+(72, 'A0005', 'P0003', 25000000, 3214285.7142857, 35, 0, 25000000, '', '2021-10-20', '2021-11-19', 'belum lunas');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_simpan`
+-- Table structure for table `t_simpan`
 --
 
 CREATE TABLE `t_simpan` (
@@ -225,19 +231,20 @@ CREATE TABLE `t_simpan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_simpan`
+-- Dumping data for table `t_simpan`
 --
 
 INSERT INTO `t_simpan` (`kode_simpan`, `jenis_simpan`, `besar_simpanan`, `kode_anggota`, `u_entry`, `tgl_mulai`, `tgl_entri`) VALUES
 (198, 'sukarela', 10000000, 'A0003', 'Operator Koperasi', '2021-10-12', '2021-10-12'),
 (197, 'pokok', 10000, 'A0003', 'Gilang', '2021-10-12', '2021-10-12'),
 (196, 'pokok', 10000, 'A0002', 'Gilang', '2021-10-08', '2021-10-08'),
-(195, 'pokok', 10000, 'A0001', 'Gilang', '2021-09-21', '2021-09-21');
+(195, 'pokok', 10000, 'A0001', 'Gilang', '2021-09-21', '2021-09-21'),
+(201, 'pokok', 10000, 'A0005', 'daftar', '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_tabungan`
+-- Table structure for table `t_tabungan`
 --
 
 CREATE TABLE `t_tabungan` (
@@ -248,18 +255,19 @@ CREATE TABLE `t_tabungan` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
--- Dumping data untuk tabel `t_tabungan`
+-- Dumping data for table `t_tabungan`
 --
 
 INSERT INTO `t_tabungan` (`kode_tabungan`, `kode_anggota`, `tgl_mulai`, `besar_tabungan`) VALUES
 (59, 'A0003', '2021-10-12', 10010000),
 (58, 'A0002', '2021-10-08', 10000),
-(57, 'A0001', '2021-09-21', 10000);
+(57, 'A0001', '2021-09-21', 10000),
+(62, 'A0005', '0000-00-00', 10000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_user`
+-- Table structure for table `t_user`
 --
 
 CREATE TABLE `t_user` (
@@ -274,7 +282,7 @@ CREATE TABLE `t_user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_user`
+-- Dumping data for table `t_user`
 --
 
 INSERT INTO `t_user` (`kode_user`, `kode_petugas`, `username`, `password`, `nama`, `tgl_entri`, `foto`, `level`) VALUES
@@ -286,110 +294,110 @@ INSERT INTO `t_user` (`kode_user`, `kode_petugas`, `username`, `password`, `nama
 --
 
 --
--- Indeks untuk tabel `t_anggota`
+-- Indexes for table `t_anggota`
 --
 ALTER TABLE `t_anggota`
   ADD PRIMARY KEY (`kode_anggota`);
 
 --
--- Indeks untuk tabel `t_angsur`
+-- Indexes for table `t_angsur`
 --
 ALTER TABLE `t_angsur`
   ADD PRIMARY KEY (`kode_angsur`);
 
 --
--- Indeks untuk tabel `t_jenis_pinjam`
+-- Indexes for table `t_jenis_pinjam`
 --
 ALTER TABLE `t_jenis_pinjam`
   ADD PRIMARY KEY (`kode_jenis_pinjam`);
 
 --
--- Indeks untuk tabel `t_jenis_simpan`
+-- Indexes for table `t_jenis_simpan`
 --
 ALTER TABLE `t_jenis_simpan`
   ADD PRIMARY KEY (`kode_jenis_simpan`);
 
 --
--- Indeks untuk tabel `t_pengajuan`
+-- Indexes for table `t_pengajuan`
 --
 ALTER TABLE `t_pengajuan`
   ADD PRIMARY KEY (`kode_pengajuan`);
 
 --
--- Indeks untuk tabel `t_pengambilan`
+-- Indexes for table `t_pengambilan`
 --
 ALTER TABLE `t_pengambilan`
   ADD PRIMARY KEY (`kode_ambil`);
 
 --
--- Indeks untuk tabel `t_petugas`
+-- Indexes for table `t_petugas`
 --
 ALTER TABLE `t_petugas`
   ADD PRIMARY KEY (`kode_petugas`);
 
 --
--- Indeks untuk tabel `t_pinjam`
+-- Indexes for table `t_pinjam`
 --
 ALTER TABLE `t_pinjam`
   ADD PRIMARY KEY (`kode_pinjam`);
 
 --
--- Indeks untuk tabel `t_simpan`
+-- Indexes for table `t_simpan`
 --
 ALTER TABLE `t_simpan`
   ADD PRIMARY KEY (`kode_simpan`);
 
 --
--- Indeks untuk tabel `t_tabungan`
+-- Indexes for table `t_tabungan`
 --
 ALTER TABLE `t_tabungan`
   ADD PRIMARY KEY (`kode_tabungan`);
 
 --
--- Indeks untuk tabel `t_user`
+-- Indexes for table `t_user`
 --
 ALTER TABLE `t_user`
   ADD PRIMARY KEY (`kode_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `t_angsur`
+-- AUTO_INCREMENT for table `t_angsur`
 --
 ALTER TABLE `t_angsur`
   MODIFY `kode_angsur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
--- AUTO_INCREMENT untuk tabel `t_pengajuan`
+-- AUTO_INCREMENT for table `t_pengajuan`
 --
 ALTER TABLE `t_pengajuan`
-  MODIFY `kode_pengajuan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `kode_pengajuan` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `t_pengambilan`
+-- AUTO_INCREMENT for table `t_pengambilan`
 --
 ALTER TABLE `t_pengambilan`
   MODIFY `kode_ambil` int(5) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `t_pinjam`
+-- AUTO_INCREMENT for table `t_pinjam`
 --
 ALTER TABLE `t_pinjam`
-  MODIFY `kode_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `kode_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
--- AUTO_INCREMENT untuk tabel `t_simpan`
+-- AUTO_INCREMENT for table `t_simpan`
 --
 ALTER TABLE `t_simpan`
-  MODIFY `kode_simpan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `kode_simpan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
--- AUTO_INCREMENT untuk tabel `t_tabungan`
+-- AUTO_INCREMENT for table `t_tabungan`
 --
 ALTER TABLE `t_tabungan`
-  MODIFY `kode_tabungan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `kode_tabungan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
